@@ -17,6 +17,13 @@ class ModelProduto{
         $dadosProduto = json_decode($json);
 
         $this->_idProduto = $dadosProduto->idProduto ?? null;
+        $this->_nome = $dadosProduto->idNome ?? null;
+        $this->_preco = $dadosProduto->idPreco ?? null;
+        $this->_quantidade = $dadosProduto->idPreco ?? null;
+        $this->_foto = $dadosProduto->idPreco ?? null;
+        $this->_descricao = $dadosProduto->idPreco ?? null;
+
+        $this->_conn = $conn;
 
         //GET
         // $this->_nome = $dadosProduto->nome ?? null;
@@ -24,10 +31,21 @@ class ModelProduto{
         // $this->_quantidade = $dadosProduto->preco ?? null;
 
         //POST
-
-
         
     }
+
+    public function findAll(){
+        $sql = "";
+
+        
+
+    }
+
+    
+
+
+
+
 
 }
 
