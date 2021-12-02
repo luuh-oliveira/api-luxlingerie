@@ -2,7 +2,7 @@
 
 class ModelProduto{
 
-    private $_conn;
+    private $_conexao;
 
     private $_idProduto;
     private $_nome;
@@ -11,42 +11,37 @@ class ModelProduto{
     private $_foto;
     private $_descricao;
     
-    public function __construct($conn){
+    public function __construct($conexao){
 
         $json = file_get_contents("php://input");
         $dadosProduto = json_decode($json);
 
         $this->_idProduto = $dadosProduto->idProduto ?? null;
-        $this->_nome = $dadosProduto->idNome ?? null;
-        $this->_preco = $dadosProduto->idPreco ?? null;
-        $this->_quantidade = $dadosProduto->idPreco ?? null;
-        $this->_foto = $dadosProduto->idPreco ?? null;
-        $this->_descricao = $dadosProduto->idPreco ?? null;
+        $this->_nome = $dadosProduto->nome ?? null;
+        $this->_preco = $dadosProduto->preco ?? null;
+        $this->_quantidade = $dadosProduto->preco ?? null;
+        $this->_foto = $dadosProduto->foto ?? null;
+        $this->_descricao = $dadosProduto->descricao ?? null;
 
-        $this->_conn = $conn;
+        $this->_conexao = $conexao;
 
-        //GET
-        // $this->_nome = $dadosProduto->nome ?? null;
-        // $this->_preco = $dadosProduto->preco ?? null;
-        // $this->_quantidade = $dadosProduto->preco ?? null;
+        
 
         //POST
         
     }
 
     public function findAll(){
-        $sql = "";
+        $sql = "SELECT * FROM tblProduto";
 
-        
-
+        $stm = $this->_conexao->prepare($sql);
+        $stm->execute();
+        return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+
+
     
-
-
-
-
-
 }
 
 ?>

@@ -3,11 +3,11 @@
 class Connection{
 
     private $_dbHostName = "localhost";
-    //! - colocar o nome do banco
-    private $_dbName = "";
+    private $_dbName = "db_luxlingerie";
     private $_userName = "root";
     private $_dbPassword = "bcd127";
     private $_conn;
+
 
     public function __construct(){
         
