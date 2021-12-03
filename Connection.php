@@ -6,18 +6,18 @@ class Connection{
     private $_dbName = "db_luxlingerie";
     private $_userName = "root";
     private $_dbPassword = "bcd127";
-    private $_conn;
+    private $_conexao;
 
 
     public function __construct(){
         
         try {
             
-            $this->_conn = new PDO("mysql:host =$this->_dbHostName;dbname=$this->_dbName;", 
+            $this->_conexao = new PDO("mysql:host =$this->_dbHostName;dbname=$this->_dbName;", 
                                     $this->_userName, 
                                     $this->_dbPassword);
             
-            $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->_conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         } catch (PDOException $e) {
             
@@ -28,7 +28,7 @@ class Connection{
     }
 
     public function returnConnection(){
-        return $this->_conn;
+        return $this->_conexao;
     } 
 
 }

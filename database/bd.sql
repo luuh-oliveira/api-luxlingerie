@@ -73,3 +73,6 @@ foreign key(idCompra)
 references tblCompra(idCompra)
 
 );
+
+alter table tblProduto
+	add column desconto Int not null;
