@@ -6,4 +6,6 @@ $conexao = new Connection();
 
 $modelProduto = new ModelProduto($conexao->returnConnection());
 
+$dados = $modelPessoa->findAll();
+
 ?>
