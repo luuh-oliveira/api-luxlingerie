@@ -25,9 +25,22 @@ class ControllerProduto{
             case 'GET':
                 
                 return $this->_modelProduto->findAll();
-
                 break;
             
+            case 'POST':
+
+                return $this->_modelProduto->create();
+                break;
+
+
+            case 'DELETE':
+                return $this->_modelProduto->delete();
+                break;
+
+            case 'PUT':
+                return $this->_modelProduto->update();
+                break;
+
             default:
                 # code...
                 break;
