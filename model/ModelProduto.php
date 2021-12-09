@@ -113,7 +113,6 @@ class ModelProduto
         $stm->bindValue(1, $this->_idProduto);
         $stm->execute();
 
-        //!!PRODUTO RETORNANDO ARRAY NULO!!
         $produto = $stm->fetchAll(\PDO::FETCH_ASSOC);
         unlink("../upload/" . $produto[0]["foto"]);
 
