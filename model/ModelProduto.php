@@ -27,24 +27,7 @@ class ModelProduto
         $dadosProduto = json_decode($json);
 
         switch ($this->_method) {
-            case 'GET':
-                $this->_idProduto = $dadosProduto->idProduto ?? null;
-                $this->_nome = $dadosProduto->nome ?? null;
-                $this->_preco = $dadosProduto->preco ?? null;
-                $this->_quantidade = $dadosProduto->preco ?? null;
-                $this->_foto = $dadosProduto->foto ?? null;
-                $this->_descricao = $dadosProduto->descricao ?? null;
-                $this->_idCor = $dadosProduto->idCor ?? null;
-                $this->_idModelo = $dadosProduto->idModelo ?? null;
-                $this->_idTamanho = $dadosProduto->idTamanho ?? null;
-                $this->_desconto = $dadosProduto->desconto ?? null;
-
-                break;
-
-            case 'DELETE':
-                $this->_idProduto = $dadosProduto->idProduto ?? null;
-
-            default:
+            case 'POST':
                 $this->_idProduto = $_POST["idProduto"] ?? null;
                 $this->_nome = $_POST["nome"] ?? null;
                 $this->_preco = $_POST["preco"] ?? null;
@@ -61,13 +44,20 @@ class ModelProduto
                 // exit;
 
                 break;
+
+            default:
+                $this->_idProduto = $dadosProduto->idProduto ?? null;
+                $this->_nome = $dadosProduto->nome ?? null;
+                $this->_preco = $dadosProduto->preco ?? null;
+                $this->_quantidade = $dadosProduto->preco ?? null;
+                $this->_foto = $dadosProduto->foto ?? null;
+                $this->_descricao = $dadosProduto->descricao ?? null;
+                $this->_idCor = $dadosProduto->idCor ?? null;
+                $this->_idModelo = $dadosProduto->idModelo ?? null;
+                $this->_idTamanho = $dadosProduto->idTamanho ?? null;
+                $this->_desconto = $dadosProduto->desconto ?? null;
+                break;
         }
-
-        //GET / PUT
-
-
-        //POST
-
 
         $this->_conexao = $conexao;
     }
@@ -115,16 +105,17 @@ class ModelProduto
 
     public function delete()
     {
+
         //deletar imagens
-        // $sqlImg = "SELECT foto FROM tblProduto WHERE idProduto = ?";
+        $sqlImg = "SELECT foto FROM tblProduto WHERE idProduto = ?";
 
-        // $stm = $this->_conexao->prepare($sqlImg);
-        // $stm->bindValue(1, $this->_idProduto);
-        // $stm->execute();
+        $stm = $this->_conexao->prepare($sqlImg);
+        $stm->bindValue(1, $this->_idProduto);
+        $stm->execute();
 
-        // //!!PRODUTO RETORNANDO ARRAY NULO!!
-        // $produto = $stm->fetchAll(\PDO::FETCH_ASSOC);
-        // unlink("../upload/" . $produto[0]["foto"]);
+        //!!PRODUTO RETORNANDO ARRAY NULO!!
+        $produto = $stm->fetchAll(\PDO::FETCH_ASSOC);
+        unlink("../upload/" . $produto[0]["foto"]);
 
 
         $sql = "DELETE FROM tblProduto WHERE idProduto = ?";
