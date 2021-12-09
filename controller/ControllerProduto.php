@@ -15,7 +15,7 @@ class ControllerProduto{
         $json = file_get_contents("php://input");
         $dadosProduto = json_decode($json);
 
-        $this->_idProduto = $dadosProduto->idProduto ?? null;
+        $this->_idProduto = $dadosProduto->idProduto ?? $_POST["idProduto"];
 
     }
 
@@ -29,16 +29,17 @@ class ControllerProduto{
             
             case 'POST':
 
-                return $this->_modelProduto->create();
-                break;
+                if($this->_idProduto){
+                    return $this->_modelProduto->update();
+                    break;
+                }else{
+                    return $this->_modelProduto->create();
+                    break;
+                }
 
 
             case 'DELETE':
                 return $this->_modelProduto->delete();
-                break;
-
-            case 'PUT':
-                return $this->_modelProduto->update();
                 break;
 
             default:
