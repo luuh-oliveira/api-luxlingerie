@@ -1,30 +1,28 @@
 <?php
 
-class ModelCor{
+class ModelModelo{
 
     private $_conexao;
-    private $_idCor;
-    private $_cor;
-
-    //!! testar sem receber id e cor !!
+    private $_idModelo;
+    private $_nome;
 
     public function __construct($conexao)
     {
-        // 
+        //
         $json = file_get_contents("php://input");
-        $dadosCor = json_decode($json);
+        $dadosModelo = json_decode($json);
 
-        $this->_idCor = $dadosCor->idCor ?? null;
-        $this->_cor = $dadosCor->cor ?? null;
+        $this->_idModelo = $dadosModelo->idModelo ?? null;
+        $this->_nome = $dadosModelo->nome ?? null;
         //
 
         $this->_conexao = $conexao;
 
     }
 
-    public function findAll()
+    function findAll()
     {
-        $sql = "SELECT * FROM tblCor";
+        $sql = "SELECT * FROM tblModelo";
 
         $stm = $this->_conexao->prepare($sql);
         $stm->execute();
