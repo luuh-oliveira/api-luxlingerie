@@ -122,6 +122,8 @@ class ModelProduto
         $stm = $this->_conexao->prepare($sql);
         $stm->bindValue(1, $this->_idProduto);
 
+        var_dump($stm);
+
         if ($stm->execute()) {
             return "Dados excluídos com sucesso!";
         }

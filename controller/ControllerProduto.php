@@ -15,7 +15,7 @@ class ControllerProduto{
         $json = file_get_contents("php://input");
         $dadosProduto = json_decode($json);
 
-        $this->_idProduto = $dadosProduto->idProduto ?? $_POST["idProduto"];
+        $this->_idProduto = $dadosProduto->idProduto ?? $_POST["idProduto"] ?? null;
 
     }
 
