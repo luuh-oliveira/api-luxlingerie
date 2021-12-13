@@ -12,7 +12,7 @@ class ControllerModelo{
     }
 
     function router(){
-        switch ($this->_modelModelo) {
+        switch ($this->_method) {
             case 'GET':
                 return $this->_modelModelo->findAll();
                 break;
