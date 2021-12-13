@@ -71,6 +71,20 @@ class ModelProduto
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    
+    public function findById(){
+
+        $sql = "SELECT * FROM tblProduto WHERE idProduto = ?";
+
+        $stm = $this->_conexao->prepare($sql);
+        $stm->bindValue(1, $this->_idProduto);
+
+        $stm->execute();
+
+        return $stm->fetchAll(\PDO::FETCH_ASSOC);
+
+    }
+
 
     public function create()
     {

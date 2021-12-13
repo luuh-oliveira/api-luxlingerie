@@ -23,6 +23,10 @@ class ControllerProduto{
 
         switch ($this->_method) {
             case 'GET':
+
+                if (isset($this->_idProduto)) {
+                    return $this->_modelProduto->findById();
+                }
                 
                 return $this->_modelProduto->findAll();
                 break;
